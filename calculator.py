@@ -1,31 +1,41 @@
-"""
-    No setup
-    repeat forever:
-        read input DONE
-        tokenize input DONE
-        if the first token is 'q', quit DONE
-        otherwise decide which math function to call based on the tokens we read
-"""
+#import functions from arthimetic file
 from arithmetic import *
 
+#get calculator input from user
 user_input = raw_input("> ")
 
+#calculator loops until user quits "q"
 while user_input != "q":
-    # separate input into tokens
+
+    # separate input into tokens to break out operator from numbers
     tokens = user_input.split(" ")
     # separate tokens into numbers and operator
     operator = tokens[0]
     numbers = tokens[1:]
 
     # turn all numbers into integers
-    for i in numbers:
-        numbers[i] = int(numbers[i]
+    numbers = map(int, numbers)
     
-###### This is where we are currently working!! ########
-
-    if tokens[0] == "+":
-        print add(tokens[1],tokens[2])
+    #uses operator to determine which function to call
+    if operator == "+":
+        print add(numbers[0],numbers[1])
+    elif operator == "-":
+        print subtract(numbers[0],numbers[1])
+    elif operator == "*":
+        print multiply(numbers[0],numbers[1])    
+    elif operator == "/":
+        print divide(numbers[0],numbers[1])
+    elif operator == "square":
+        print square(numbers[0])
+    elif operator == "cube":
+        print cube(numbers[0])
+    elif operator == "pow":
+        print power(numbers[0],numbers[1])
+    elif operator == "mod":
+        print mod(numbers[0],numbers[1])        
     else:
-        print "Nopes"
+        print "Not a valid calculator command. Please try again!"
 
+    # ask for new input
     user_input = raw_input("> ")
+    
